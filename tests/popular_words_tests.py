@@ -12,8 +12,8 @@ class Popular_Words_Tests(unittest.TestCase):
         amt_of_words = 10
         regex = "(\w+)"
         expected = [("how", 1), ("are", 1), ("you", 1)]
-        result = self.handler.popular_words(open("books/"
-                                                 "test_map_three_words.txt"),
+        result = self.handler.popular_words("books/"
+                                            "test_map_three_words.txt",
                                             amt_of_words,
                                             regex)
 
@@ -23,9 +23,9 @@ class Popular_Words_Tests(unittest.TestCase):
         amt_of_words = 10
         regex = "(\w+)"
         expected = [("how", 1), ("are", 1), ("you", 1)]
-        result = self.handler.popular_words(open("books/"
-                                                 "test_map_three_words_with_"
-                                                 "punctuation.txt"),
+        result = self.handler.popular_words("books/"
+                                            "test_map_three_words_with_"
+                                            "punctuation.txt",
                                             amt_of_words,
                                             regex)
 
@@ -36,8 +36,8 @@ class Popular_Words_Tests(unittest.TestCase):
         regex = "(\w+)"
         expected = [('friend', 2), ('hello', 2), ('i', 2), ('is', 2),
                     ('said', 1)]
-        result = self.handler.popular_words(open("books/"
-                                                 "test_map_sentence.txt"),
+        result = self.handler.popular_words("books/"
+                                            "test_map_sentence.txt",
                                             amt_of_words,
                                             regex)
 

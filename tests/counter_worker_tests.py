@@ -14,7 +14,7 @@ class Counter_Worker_Tests(unittest.TestCase):
         job_queue = Queue.Queue()
         result_queue = Queue.Queue()
 
-        file1 = open("books/test_map_three_words.txt")
+        file1 = "books/test_map_three_words.txt"
         job_queue.put([file1, 10, self.regex])
 
         self.handler.counter_worker(job_queue, result_queue)
@@ -24,9 +24,9 @@ class Counter_Worker_Tests(unittest.TestCase):
         job_queue = Queue.Queue()
         result_queue = Queue.Queue()
 
-        file1 = open("books/test_map_three_words.txt")
-        file2 = open("books/test_map_three_words_with_punctuation.txt")
-        file3 = open("books/test_map_sentence.txt")
+        file1 = "books/test_map_three_words.txt"
+        file2 = "books/test_map_three_words_with_punctuation.txt"
+        file3 = "books/test_map_sentence.txt"
         job_queue.put([file1, 10, self.regex])
         job_queue.put([file2, 10, self.regex])
         job_queue.put([file3, 10, self.regex])
@@ -39,7 +39,7 @@ class Counter_Worker_Tests(unittest.TestCase):
         result_queue = Queue.Queue()
         expected = [('how', 1), ('you', 1), ('are', 1)]
 
-        file1 = open("books/test_map_three_words.txt")
+        file1 = "books/test_map_three_words.txt"
         job_queue.put([file1, 10, self.regex])
 
         self.handler.counter_worker(job_queue, result_queue)
