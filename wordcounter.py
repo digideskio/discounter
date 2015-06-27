@@ -4,9 +4,9 @@ import multiprocessing
 
 description = str("A distributed, multiprocess application that will return the"
                   " most commonly used words in a file (or combination of many "
-                  "files.")
+                  "files).")
 
-logger = logger.getLogger(__name__)
+logger = logging.getLogger(__name__)
 parser = argparse.ArgumentParser(description=description)
 parser.add_argument("filename", type=argparse.FileType('r'), nargs='+',
                     help="File to perform word count on")
