@@ -10,23 +10,13 @@ class MP_Handler():
     def __init__(self):
         logging.basicConfig(level=logging.DEBUG)
     
-    def runserver(self, ipaddr, port):
+    def run_server(self, ipaddr, port):
         manager = self.make_server_manager(ipaddr, port, authkey)
-        shared_job_queue = manager.get_job_queue()
 
-        for filename in files:
-            shared_job_queue.put([filename, count, regex])
-
-        numresults = 0
-        resultdict = {}
-        while numresults < len(filenames):
-            outdict = shared_result_queue.get()
-            resultdict.update(outdict)
-            numresults += len(outdict)
 
         time.sleep(2)
         logging.debug("Multiprocessing Server Manager is shutting down...")
-        manager.shutdown()
+        self.manager.shutdown()
         logging.debug("Multiprocessing Server Manager has shut down.")
 
     def make_server_manager(self, ipaddr, port, authkey):
@@ -80,3 +70,16 @@ class MP_Handler():
 
         for p in procs:
             p.join()
+
+    def make_client_manager(self, ip, port, authkey):
+        class ServerQueueManager(SyncManager):
+            pass
+
+        ServerQueueManager.register('get_job_queue')
+        ServerQueueManager.register('get_result_queue')
+
+        manager = ServerQueueManager(address=(ip,port), authkey=authkey)
+        manager.connect()
+
+        logging.debug("Client connected to %s:%s" % (ip, port))
+        return manager
