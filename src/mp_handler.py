@@ -52,19 +52,21 @@ class MP_Handler():
 
     def counter_worker(self, job_queue, result_queue):
         process = multiprocessing.current_process()
+        logging.debug("%s: STARTING UP!" % process)
+
         while True:
             try:
                 job = job_queue.get_nowait()
-                logging.debug("%sI have a job!!!", process)
+                logging.debug("%s: I have a job!!!" % process)
                 results = self.popular_words(job[0], job[1], job[2])
                 outdict = {job[0]: results}
 
-                logging.debug("%sCounter_Worker: Adding file \"%s\" with "
+                logging.debug("%s: Adding file \"%s\" with "
                               "results to result queue: %s" % (process, job[0],
                                                                results))
                 result_queue.put(outdict)
             except Queue.Empty:
-                logging.debug("%sNo work! Returning.", process)
+                logging.debug("%s: No work! Returning.", process)
                 return
 
     def mp_counter(self, shared_job_queue, shared_result_queue, nprocs):
@@ -73,8 +75,11 @@ class MP_Handler():
             p = multiprocessing.Process(target=self.counter_worker,
                                         args=(shared_job_queue,
                                               shared_result_queue))
+            logging.debug("Created process %d" % i)
             procs.append(p)
+
+        for p in procs:
             p.start()
 
-            for p in procs:
-                p.join()
+        for p in procs:
+            p.join()

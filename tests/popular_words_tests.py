@@ -42,6 +42,13 @@ class Popular_Words_Tests(unittest.TestCase):
                                             regex)
 
         self.assertEquals(sorted(expected), sorted(result))
+
+    def test_popular_words_invalid_file(self):
+        amt_of_words = 5
+        regex = "(\w+)"
+
+        self.assertRaises(IOError, self.handler.popular_words,
+                          "INVALID FILE", amt_of_words, regex)
         
 if __name__ == '__main__':
     unittest.main()

@@ -16,29 +16,29 @@ class MP_Counter_Tests(unittest.TestCase):
                                                    random.randint(44000,55000),
                                                    "test")
 
-#    def test_mp_counter_one_file_one_process(self):
-#        job_queue = self.manager.get_job_queue()
-#        result_queue = self.manager.get_result_queue()
-#        nprocs = 1
-#
-#        file1 = "books/test_map_three_words.txt"
-#        job_queue.put([file1, 10, self.regex])
-#
-#        self.handler.mp_counter(job_queue, result_queue, nprocs)
-#
-#        self.assertEquals(result_queue.qsize(), 1)
-#
-#    def test_mp_counter_one_file_eight_processes(self):
-#        job_queue = self.manager.get_job_queue()
-#        result_queue = self.manager.get_result_queue()
-#        nprocs = 8
-#
-#        file1 = "books/test_map_three_words.txt"
-#        job_queue.put([file1, 10, self.regex])
-#
-#        self.handler.mp_counter(job_queue, result_queue, nprocs)
-#
-#        self.assertEquals(result_queue.qsize(), 1)
+    def test_mp_counter_one_file_one_process(self):
+        job_queue = self.manager.get_job_queue()
+        result_queue = self.manager.get_result_queue()
+        nprocs = 1
+
+        file1 = "books/test_map_three_words.txt"
+        job_queue.put([file1, 10, self.regex])
+
+        self.handler.mp_counter(job_queue, result_queue, nprocs)
+
+        self.assertEquals(result_queue.qsize(), 1)
+
+    def test_mp_counter_one_file_eight_processes(self):
+        job_queue = self.manager.get_job_queue()
+        result_queue = self.manager.get_result_queue()
+        nprocs = 8
+
+        file1 = "books/test_map_three_words.txt"
+        job_queue.put([file1, 10, self.regex])
+
+        self.handler.mp_counter(job_queue, result_queue, nprocs)
+
+        self.assertEquals(result_queue.qsize(), 1)
 
     def test_mp_counter_three_files_eight_processes(self):
         job_queue = self.manager.get_job_queue()
@@ -54,13 +54,7 @@ class MP_Counter_Tests(unittest.TestCase):
 
         self.handler.mp_counter(job_queue, result_queue, nprocs)
 
-        #self.assertEquals(result_queue.qsize(), 3)
-
-        # Forcing this test to fail because even though we're spawning
-        # eight processes, only one process seems to be pulling from the
-        # job queue.  So, how the test is written right now, it will pass
-        # but I don't consider it a good test.  Have to fix.
-        self.assertEquals(True, False) 
+        self.assertEquals(result_queue.qsize(), 3)
 
     # TODO: Develop a test to make sure processes are pulling from
     # the job queues correctly so that all jobs are shared accross
