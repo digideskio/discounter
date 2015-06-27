@@ -10,7 +10,7 @@ class MP_Handler():
     def __init__(self):
         logging.basicConfig(level=logging.DEBUG)
     
-    def runserver(self, ipaddr, port, authkey, files, count, regex):
+    def runserver(self, ipaddr, port):
         manager = self.make_server_manager(ipaddr, port, authkey)
         shared_job_queue = manager.get_job_queue()
 
