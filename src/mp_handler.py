@@ -45,10 +45,9 @@ class MP_Handler():
         logging.debug("Multiprocessing Server Started: %s:%s" % (ipaddr, port))
         return manager
 
-    def popular_words(self, filename, amt_of_words, regex):
-        file = open(filename)
-        words = re.findall(regex, file.read().lower())
-        return Counter(words).most_common(amt_of_words)
+    def word_count(self, textblob, regex):
+        words = re.findall(regex, textblob.lower())
+        return Counter(words)
 
     def counter_worker(self, job_queue, result_queue):
         process = multiprocessing.current_process()
@@ -58,13 +57,11 @@ class MP_Handler():
             try:
                 job = job_queue.get_nowait()
                 logging.debug("%s: I have a job!!!" % process)
-                results = self.popular_words(job[0], job[1], job[2])
-                outdict = {job[0]: results}
+                
+                results = self.word_count(job[0], job[1])
+                result_queue.put(results)
+                logging.debug("%s: Added results to the result_queue" % process)
 
-                logging.debug("%s: Adding file \"%s\" with "
-                              "results to result queue: %s" % (process, job[0],
-                                                               results))
-                result_queue.put(outdict)
             except Queue.Empty:
                 logging.debug("%s: No work! Returning.", process)
                 return

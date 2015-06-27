@@ -22,7 +22,7 @@ class MP_Counter_Tests(unittest.TestCase):
         nprocs = 1
 
         file1 = "books/test_map_three_words.txt"
-        job_queue.put([file1, 10, self.regex])
+        job_queue.put([open(file1).read(), self.regex])
 
         self.handler.mp_counter(job_queue, result_queue, nprocs)
 
@@ -34,7 +34,7 @@ class MP_Counter_Tests(unittest.TestCase):
         nprocs = 8
 
         file1 = "books/test_map_three_words.txt"
-        job_queue.put([file1, 10, self.regex])
+        job_queue.put([open(file1).read(), self.regex])
 
         self.handler.mp_counter(job_queue, result_queue, nprocs)
 
@@ -48,9 +48,9 @@ class MP_Counter_Tests(unittest.TestCase):
         file1 = "books/test_map_three_words.txt"
         file2 = "books/test_map_three_words_with_punctuation.txt"
         file3 = "books/test_map_sentence.txt"
-        job_queue.put([file1, 10, self.regex])
-        job_queue.put([file2, 10, self.regex])
-        job_queue.put([file3, 10, self.regex])
+        job_queue.put([open(file1).read(), self.regex])
+        job_queue.put([open(file2).read(), self.regex])
+        job_queue.put([open(file3).read(), self.regex])
 
         self.handler.mp_counter(job_queue, result_queue, nprocs)
 
