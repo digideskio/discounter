@@ -2,6 +2,7 @@ import sys
 import argparse
 import logging
 import multiprocessing
+import lib.wordcounter
 
 logger = logging.getLogger(__name__)
 
@@ -29,4 +30,6 @@ parser.add_argument("--regex", help="Custom regular expression",
 
 args = parser.parse_args()
 
-
+wc = lib.wordcounter.WordCounter()
+wc.count(args.filename, amt_of_words=args.count, regex=args.regex,
+         nprocs=args.processes)
