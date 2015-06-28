@@ -62,12 +62,14 @@ signal.signal(signal.SIGINT, sigint_signal_handler)
 if (args.verbose):
     logging.basicConfig(level=logging.DEBUG)
 
-if ((args.worker == False and args.file == None) or
-    (args.worker == True and args.file != None)):
-    logging.error("You must either run this application as a worker (-w) "
-                  "or run with files to process (-f).")
+if (args.worker == False and args.file == None):
+    logging.error("You must run this application with files (-f) to process or"
+                  " as a worker node (-w) for distributed programming.")
     parser.print_help()
-    
+    sys.exit(1)
+elif (args.worker == True and args.file != None):
+    logging.error("You cannot run this application with both the -f and -w "
+                  "at the same time.")
     sys.exit(1)
 
 wc = lib.wordcounter.WordCounter()
