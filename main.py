@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-"""Application that returns the most commonly used words in text files
+"""
+Application that returns the most commonly used words in text files
 
 Distributed, multiprocess application that returns a list of most commonly
 used words in a text file, or the total accross multiple files.
@@ -54,10 +55,12 @@ args = parser.parse_args()
 if (args.verbose):
     logging.basicConfig(level=logging.DEBUG)
 
-if ((args.worker == False and args.file == None) or 
+if ((args.worker == False and args.file == None) or
     (args.worker == True and args.file != None)):
     logging.error("You must either run this application as a worker (-w) "
                   "or run with files to process (-f), but not both.")
+    parser.print_help()
+    
     sys.exit(1)
 
 wc = lib.wordcounter.WordCounter()
