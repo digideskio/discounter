@@ -3,6 +3,8 @@ import time
 import re
 import Queue
 import multiprocessing
+import signal
+import sys
 from multiprocessing.managers import SyncManager
 from collections import Counter
 
@@ -48,18 +50,18 @@ class MP_Handler():
                 return
 
     def mp_counter(self, shared_job_queue, shared_result_queue, nprocs):
-        procs = []
+        self.procs = []
         for i in range(nprocs):
             p = multiprocessing.Process(target=self.counter_worker,
                                         args=(shared_job_queue,
                                               shared_result_queue))
             logging.debug("Created process %d" % i)
-            procs.append(p)
+            self.procs.append(p)
 
-        for p in procs:
+        for p in self.procs:
             p.start()
 
-        for p in procs:
+        for p in self.procs:
             p.join()
 
     def make_client_manager(self, ip, port, authkey):

@@ -10,6 +10,7 @@ used words in a text file, or the total accross multiple files.
 import sys
 import argparse
 import logging
+import signal
 import multiprocessing
 import lib.wordcounter
 
@@ -21,6 +22,9 @@ __maintainer__ = __author__
 __email__ = "francis.x.fitzpatrick@gmail.com"
 __status__ = "Prototype"
 
+def sigint_signal_handler(signal, frame):
+    sys.exit(0)
+    
 class ErrorParser(argparse.ArgumentParser):
     def error(self, message):
         logging.error("error: %s" % message)
@@ -33,6 +37,9 @@ description = str("A distributed, multiprocess application that will return the"
 parser = ErrorParser(description=description)
 parser.add_argument("-f", "--file", type=argparse.FileType('r'), nargs='*',
                     help="File to perform word count on")
+parser.add_argument("-w", "--worker", action="store_true",
+                    help="Start as just a worker node/process; intended "
+                    "for distributed processing", default=False)
 parser.add_argument("-c", "--count", help="How many words to display "
                     "(default: %(default)s)", type=int, default=10)
 parser.add_argument("-n", "--nprocs", help="The number of local "
@@ -48,9 +55,9 @@ parser.add_argument("--port", help="TCP Port", default=31337, type=int)
 parser.add_argument("--authkey", default="!QAZxsw2#EDCvfr4%TGBnhy6&UJM",
                     help="The authorization key (or password) that the server "
                     "and workers use to communicate")
-parser.add_argument("-w", "--worker", action="store_true",
-                    help="Start as just a worker", default=False)
+
 args = parser.parse_args()
+signal.signal(signal.SIGINT, sigint_signal_handler)
 
 if (args.verbose):
     logging.basicConfig(level=logging.DEBUG)
