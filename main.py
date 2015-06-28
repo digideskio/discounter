@@ -4,9 +4,6 @@ import logging
 import multiprocessing
 import lib.wordcounter
 
-logger = logging.getLogger(__name__)
-
-
 class ErrorParser(argparse.ArgumentParser):
     def error(self, message):
         logging.error("error: %s" % message)
@@ -27,8 +24,13 @@ parser.add_argument("-p", "--processes", help="The number of local "
                     default=multiprocessing.cpu_count(), type=int)
 parser.add_argument("--regex", help="Custom regular expression",
                     default="(\w+)")
+parser.add_argument("-v", "--verbose", help="Display debugging log messages", 
+                    action="store_true")
 
 args = parser.parse_args()
+
+if (args.verbose):
+    logging.basicConfig(level=logging.DEBUG)
 
 wc = lib.wordcounter.WordCounter()
 wc.count(args.filename, amt_of_words=args.count, regex=args.regex,

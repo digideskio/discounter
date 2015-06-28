@@ -7,19 +7,6 @@ from multiprocessing.managers import SyncManager
 from collections import Counter
 
 class MP_Handler():
-    def __init__(self):
-        logging.basicConfig(level=logging.DEBUG)
-    
-    def run_server(self, ipaddr, port):
-        manager = self.make_server_manager(ipaddr, port, authkey)
-
-        
-        
-        time.sleep(2)
-        logging.debug("Multiprocessing Server Manager is shutting down...")
-        self.manager.shutdown()
-        logging.debug("Multiprocessing Server Manager has shut down.")
-
     def make_server_manager(self, ipaddr, port, authkey):
         # TODO: Probably need to make these multiprocessing queues?
         # Getting an NotImplementedException on OSX when using them though
