@@ -30,7 +30,7 @@ description = str("A distributed, multiprocess application that will return the"
                   " most commonly used words in a file (or combination of many "
                   "files).")
 parser = ErrorParser(description=description)
-parser.add_argument("filename", type=argparse.FileType('r'), nargs='+',
+parser.add_argument("-f", "--file", type=argparse.FileType('r'), nargs='*',
                     help="File to perform word count on")
 parser.add_argument("-c", "--count", help="How many words to display "
                     "(default: %(default)s)", type=int, default=10)
@@ -48,13 +48,19 @@ parser.add_argument("--authkey", default="!QAZxsw2#EDCvfr4%TGBnhy6&UJM",
                     help="The authorization key (or password) that the server "
                     "and workers use to communicate")
 parser.add_argument("-w", "--worker", action="store_true",
-                    help="Start as just a worker")
+                    help="Start as just a worker", default=False)
 args = parser.parse_args()
 
 if (args.verbose):
     logging.basicConfig(level=logging.DEBUG)
 
+if ((args.worker == False and args.file == None) or 
+    (args.worker == True and args.file != None)):
+    logging.error("You must either run this application as a worker (-w) "
+                  "or run with files to process (-f), but not both.")
+    sys.exit(1)
+
 wc = lib.wordcounter.WordCounter()
-wc.count(args.filename, amt_of_words=args.count, regex=args.regex,
+wc.count(args.file, amt_of_words=args.count, regex=args.regex,
          nprocs=args.nprocs, ipaddr=args.ipaddr, port=args.port,
          authkey=args.authkey, worker=args.worker)
