@@ -58,7 +58,7 @@ if (args.verbose):
 if ((args.worker == False and args.file == None) or
     (args.worker == True and args.file != None)):
     logging.error("You must either run this application as a worker (-w) "
-                  "or run with files to process (-f), but not both.")
+                  "or run with files to process (-f).")
     parser.print_help()
     
     sys.exit(1)
