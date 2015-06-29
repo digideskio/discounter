@@ -1,0 +1,16 @@
+Script started on Mon 29 Jun 2015 12:05:53 AM CDT
+]0;fxfitz@poseidon-linux: ~/wordcounter/rackspace-multiprocess-wordcounter[01;32mfxfitz@poseidon-linux[00m:[01;34m~/wordcounter/rackspace-multiprocess-wordcounter[00m$ ifconfig  eth0
+eth0      Link encap:Ethernet  HWaddr 38:60:77:1e:7f:3d  
+          inet addr:192.168.1.5  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::3a60:77ff:fe1e:7f3d/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:165434643 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:143137898 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:180107879968 (180.1 GB)  TX bytes:157341373762 (157.3 GB)
+
+]0;fxfitz@poseidon-linux: ~/wordcounter/rackspace-multiprocess-wordcounter[01;32mfxfitz@poseidon-linux[00m:[01;34m~/wordcounter/rackspace-multiprocess-wordcounter[00m$ ./main.pyy -w --ipaddr 192.168.1.118 --port 5555
+]0;fxfitz@poseidon-linux: ~/wordcounter/rackspace-multiprocess-wordcounter[01;32mfxfitz@poseidon-linux[00m:[01;34m~/wordcounter/rackspace-multiprocess-wordcounter[00m$ exit
+exit
+
+Script done on Mon 29 Jun 2015 12:06:24 AM CDT

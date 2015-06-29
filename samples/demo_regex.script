@@ -1,0 +1,18 @@
+Script started on Sun Jun 28 23:57:29 2015
+[?1034h]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ echo Lets fine[Kd the most common  letters in ths[Kese books
+Lets find the most common letters in these books
+]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py -f books/* --regex " [a=z[K[K-z]"
+e 229869
+t 162050
+a 146621
+o 143597
+i 130091
+n 127926
+s 118823
+h 115538
+r 111089
+l 82817
+]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ exit
+exit
+
+Script done on Sun Jun 28 23:58:15 2015

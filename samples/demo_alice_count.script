@@ -1,0 +1,27 @@
+Script started on Sun Jun 28 23:55:21 2015
+[?1034h]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py b[K-f books/aliceinwondeerland.txt -c 5
+the 1818
+and 940
+to 809
+a 690
+of 631
+]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py -f books/aliceinwondeerland.txt -c 515
+the 1818
+and 940
+to 809
+a 690
+of 631
+it 610
+she 553
+i 543
+you 481
+said 462
+in 431
+alice 403
+was 358
+that 330
+as 274
+]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ exit
+exit
+
+Script done on Sun Jun 28 23:55:46 2015
