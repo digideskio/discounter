@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+
+"""
+Multiprocessing handler used for the word counter application
+"""
+
 import logging
 import time
 import re
@@ -5,6 +11,14 @@ import Queue
 import multiprocessing
 from multiprocessing.managers import SyncManager
 from collections import Counter
+
+__author__ = "Fran Fitzpatrick"
+__copyright__ = "Copyright (c) 2015, %s" % __author__
+__license__ = "GPLv3"
+__version__ = "1.0"
+__maintainer__ = __author__
+__email__ = "francis.x.fitzpatrick@gmail.com"
+__status__ = "Prototype"
 
 class MP_Handler():
     def make_server_manager(self, ipaddr, port, authkey):

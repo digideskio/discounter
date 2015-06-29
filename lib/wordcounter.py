@@ -1,8 +1,22 @@
+#!/usr/bin/env python
+
+"""
+WordCounter class
+"""
+
 import logging
 import mp_handler
 import time
 import Queue
 from collections import Counter
+
+__author__ = "Fran Fitzpatrick"
+__copyright__ = "Copyright (c) 2015, %s" % __author__
+__license__ = "GPLv3"
+__version__ = "1.0"
+__maintainer__ = __author__
+__email__ = "francis.x.fitzpatrick@gmail.com"
+__status__ = "Prototype"
 
 class WordCounter():
     def __init__(self):
