@@ -1,10 +1,10 @@
 Script started on Sun Jun 28 23:52:50 2015
-[?1034h]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ls [K
+[?1034h]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ls [K
 INSTALL     LIMITATIONS [1m[36mbooks[39;49m[0m       [1m[31mmain.py[39;49m[0m
 LICENSE     README      [1m[36mlib[39;49m[0m         [1m[36msamples[39;49m[0m
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ls books/
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ls books/
 aliceinwonderland.txt prideandprejudice.txt ulysses.txt
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ python main [K.py -f books/ulyssess.txt 
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ python main [K.py -f books/ulyssess.txt 
 the 15074
 of 8257
 and 7271
@@ -15,7 +15,7 @@ he 4221
 his 3331
 i 2996
 s 2830
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ exit
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ exit
 exit
 
 Script done on Sun Jun 28 23:53:10 2015

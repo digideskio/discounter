@@ -2,7 +2,7 @@ Script started on Sun Jun 28 23:52:24 2015
 [?1034h]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ls
 INSTALL     LIMITATIONS [1m[36mbooks[39;49m[0m       [1m[31mmain.py[39;49m[0m
 LICENSE     README      [1m[36mlib[39;49m[0m         [1m[36msamples[39;49m[0m
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ python main.py
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ python main.py
 ERROR:root:You must run this application with files (-f) to process or as a worker node (-w) for distributed programming.
 usage: main.py [-h] [-f [FILE [FILE ...]]] [-w] [-c COUNT] [-n NPROCS]
                [--regex REGEX] [-d] [--ipaddr IPADDR] [--port PORT]
@@ -29,7 +29,7 @@ optional arguments:
   --port PORT           TCP Port
   --authkey AUTHKEY     The authorization key (or password) that the server
                         and workers use to communicate
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ exit
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ exit
 exit
 
 Script done on Sun Jun 28 23:52:33 2015

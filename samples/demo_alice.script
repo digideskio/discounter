@@ -1,8 +1,8 @@
 Script started on Sun Jun 28 23:54:25 2015
-[?1034h]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ls
+[?1034h]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ls
 INSTALL     LIMITATIONS [1m[36mbooks[39;49m[0m       [1m[31mmain.py[39;49m[0m
 LICENSE     README      [1m[36mlib[39;49m[0m         [1m[36msamples[39;49m[0m
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ python main.py -f books/aliceinnwonderland.txt 
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ python main.py -f books/aliceinnwonderland.txt 
 the 1818
 and 940
 to 809
@@ -13,7 +13,7 @@ she 553
 i 543
 you 481
 said 462
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ exit
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ exit
 exit
 
 Script done on Sun Jun 28 23:54:40 2015

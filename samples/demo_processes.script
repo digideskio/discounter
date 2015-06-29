@@ -1,5 +1,5 @@
 Script started on Sun Jun 28 23:56:22 2015
-[?1034h]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py -f *[Kbooks/* -d
+[?1034h]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ./main.py -f *[Kbooks/* -d
 DEBUG:root:Multiprocessing Server Started: 127.0.0.1:31337
 DEBUG:root:Total jobs in job queue: 3
 DEBUG:root:Client connected to 127.0.0.1:31337
@@ -47,7 +47,7 @@ he 5676
 i 5605
 his 4685
 it 4683
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py -f books/* -d -n 1
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ./main.py -f books/* -d -n 1
 DEBUG:root:Multiprocessing Server Started: 127.0.0.1:31337
 DEBUG:root:Total jobs in job queue: 3
 DEBUG:root:Client connected to 127.0.0.1:31337
@@ -74,7 +74,7 @@ he 5676
 i 5605
 his 4685
 it 4683
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py -f books/* -d -n 1[K3
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ./main.py -f books/* -d -n 1[K3
 DEBUG:root:Multiprocessing Server Started: 127.0.0.1:31337
 DEBUG:root:Total jobs in job queue: 3
 DEBUG:root:Client connected to 127.0.0.1:31337
@@ -107,7 +107,7 @@ he 5676
 i 5605
 his 4685
 it 4683
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ ./main.py -f books/* -d -n 3[K20
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ ./main.py -f books/* -d -n 3[K20
 DEBUG:root:Multiprocessing Server Started: 127.0.0.1:31337
 DEBUG:root:Total jobs in job queue: 3
 DEBUG:root:Client connected to 127.0.0.1:31337
@@ -191,7 +191,7 @@ he 5676
 i 5605
 his 4685
 it 4683
-]0;fxfitz@ares: ~/rackspace-multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/rackspace-multiprocess-wordcounter[00m$ exit
+]0;fxfitz@ares: ~/multiprocess-wordcounter[01;32mfxfitz@ares[00m:[01;34m~/multiprocess-wordcounter[00m$ exit
 exit
 
 Script done on Sun Jun 28 23:56:59 2015
