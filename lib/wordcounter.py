@@ -42,9 +42,11 @@ class WordCounter():
         self.server_manager.shutdown()
 
     def sum_results(self, result_queue):
+        logging.debug("Beginning to combine the results queue")
         result = Counter()
         while not result_queue.empty():
             result = result + result_queue.get()
+        logging.debug("I have combined the results queue!")
         return result
 
     def print_results(self, pop_words):
@@ -64,6 +66,12 @@ class WordCounter():
         for f in files:
             shared_job_queue.put([f.read(), regex])
             total_jobs = total_jobs + 1
+
+            # Chunking into each line makes sum_results REALLY slow
+            #for line in f:
+            #    shared_job_queue.put([line, regex])
+            #    total_jobs = total_jobs + 1
+
         logging.debug("Total jobs in job queue: %s" % total_jobs)
         return total_jobs
 
