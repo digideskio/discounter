@@ -23,7 +23,6 @@ class WordCounter():
         self.mp = mp_handler.MP_Handler()
 
     def count(self, files, **kwargs):
-        # If it is a worker, go do work!
         if (kwargs["worker"]):
             self.setup_clients(kwargs["ipaddr"],
                                kwargs["port"],
@@ -56,6 +55,11 @@ class WordCounter():
         self.server_manager.shutdown()
 
     def sum_results(self, result_queue):
+        """
+        Since everything in the results queue is a Counter object,
+        Counters can be added together; the class takes care of
+        summing up all of the results and counts.
+        """
         logging.debug("Beginning to combine the results queue")
         result = Counter()
         while not result_queue.empty():
@@ -64,6 +68,9 @@ class WordCounter():
         return result
 
     def print_results(self, pop_words):
+        """
+        Prints the results of the most popular words
+        """
         for i in pop_words:
             print "%s %d" % (i[0], i[1])
     
