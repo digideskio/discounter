@@ -1,0 +1,145 @@
+WORD COUNTER APPLICATION
+========================
+
+This application is a distributed, multiprocess application that returns
+a list of most commonly used words in a text file, or the total across multiple
+files.
+
+One of the major design decisions was to keep everything as pure python,
+making the application easily portable.  I had originally thought of using
+Apache Hadoop since this is an easy Map Reduce scenario, but I found it more
+important to have a deliverable application without having requirements like
+having a Hadoop cluster already in place.
+
+LOCAL EXAMPLES:
+===============
+
+All of the examples below are processed on your local computer.
+
+To run word count on a text file called 'love_letter.txt', one would do the
+following command with the following output (the -f flag indicates that file
+names are following):
+
+$ python main.py -f love_letter.txt
+love 7
+you 5
+i 5
+at 2
+much 2
+so 2
+night 2
+the 2
+my 2
+and 1
+
+In the above example, the output lists the top ten most common words found in
+the love_letter.txt file and also returns how many times that word has shown
+up.  For example, the word 'love' is the most popular and it occured 7 times.
+
+You can also count multiple files.  For example:
+
+$ python main.py -f *.txt
+love 7
+you 7
+i 7
+my 3
+is 2
+at 2
+your 2
+how 2
+much 2
+hope 2
+
+One could also do multiple files:
+$ python main.py -f love_letter.txt books/ulysses.txt
+
+To change the amount of results displayed, use the the -c flag:
+$ python main.py -f books/ulysses.txt -c 5
+the 15074
+of 8257
+and 7271
+a 6567
+to 5035
+
+For the application to search through the files, it uses a default regular
+expression to break out the matching words.  However, you can change the
+regular expression to match your needs!  For example, to get a listing of the
+most popular letters:
+$ python main.py -f books/ulysses.txt --regex "[a-z]"
+e 143276
+t 101693
+a 94126
+o 92743
+i 82512
+
+And as you can see, there are 143276 occurrances of the letter 'e' in the file.
+The application does convert everything to lowercase, so at this time it is
+impossible to search for capital letters (such as regex "[A-Z]").
+
+By default, the application will spin up several worker processes to work on
+each file.  This can be changed to whatever number of processes you wish to
+start up by using the -n flag (however, the most efficient is the number of
+cores that your computer has, which it defaults to).
+
+To better show this, use the -d flag to display debugging information...
+
+$ python main.py -f books/* -n 20 -d
+DEBUG:root:Multiprocessing Server Started: 127.0.0.1:31337
+DEBUG:root:Total jobs in job queue: 3
+DEBUG:root:Client connected to 127.0.0.1:31337
+DEBUG:root:Created process 0
+DEBUG:root:Created process 1
+DEBUG:root:Created process 2
+DEBUG:root:Created process 3
+DEBUG:root:Created process 4
+DEBUG:root:Created process 5
+DEBUG:root:Created process 6
+[...]
+
+The debugging flag is primarily used for debugging messages during development,
+but using it may be able to help you better spot some errors if you're having
+problems, however its use is not recommended.
+
+
+DISTRIBUTED EXAMPLES:
+=====================
+
+As previously mentioned, this application has the ability to operate in a
+distributed fashion.  One computer has the ability to start a server, placing
+all of the files into a job queue that needs to be processed.  Then there can
+be several (if not thousands!) of worker nodes that can connect to the server
+and pull off tasks that need to be processed, continually updating the server
+on the results. Then, when all of the jobs have been processed, the results
+of the most popular words will be printed.
+
+For example, if I wanted to start a server with a few jobs so that other worker
+nodes could process, it can be done like this:
+
+server$ python main.py -f books/* --ipaddr 0.0.0.0 --port 5555 -n 0
+
+This starts a server without any worker processes started (-n 0), so the jobs
+are just waiting to be queued up until another worker node connects to start
+performing the jobs.
+
+The ipaddr `0.0.0.0' is special in that it will start the server listening on
+all available interfaces of the computer.  One could choose a specific IP
+address on one of the available interfaces (example: 192.168.1.10) but using
+this is easier.  The port can be whatever available port you wish.
+
+Now, for a worker node to start processing, you have to connect to a remote
+server as a worker node:
+ 
+worker$ python main.py --ipaddr 192.168.1.10 --port 5555 -w
+
+The worker node will then immediately begin pulling jobs from the server over
+the network, processing it, and returning the results to the server.  Once
+all of the jobs have been processed, the server will print out the results!
+
+You also have the ability to change the authorization key (like a password)
+that is used when communicating between a server and worker node over the
+network.  This allows for some protection in who is able to pull jobs off of
+the queue, preventing a malicious user from wiping out someones queue or
+filling with bogus results.
+
+IMPORTANT: While the authorization key allows limited protection for the
+queues, all the traffic is still unencrypted! 
