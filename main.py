@@ -48,7 +48,7 @@ parser.add_argument("-n", "--nprocs", help="The number of local "
                     default=multiprocessing.cpu_count(), type=int)
 parser.add_argument("--regex", help="Custom regular expression",
                     default="(\w+)")
-parser.add_argument("-v", "--verbose", help="Display debugging log messages", 
+parser.add_argument("-d", "--debug", help="Enables debugging mode", 
                     action="store_true")
 parser.add_argument("--ipaddr", help="IP Address", default="127.0.0.1")
 parser.add_argument("--port", help="TCP Port", default=31337, type=int)
@@ -59,7 +59,7 @@ parser.add_argument("--authkey", default="!QAZxsw2#EDCvfr4%TGBnhy6&UJM",
 args = parser.parse_args()
 #signal.signal(signal.SIGINT, sigint_signal_handler)
 
-if (args.verbose):
+if (args.debug):
     logging.basicConfig(level=logging.DEBUG)
 
 if (args.worker == False and args.file == None):
