@@ -22,6 +22,11 @@ __status__ = "Prototype"
 
 class MP_Handler():
     def make_server_manager(self, ipaddr, port, authkey):
+        """
+        Creates a server manager that will manage all of the jobs in
+        the job_queue that clients will pull from.
+        """
+        
         # TODO: Probably need to make these multiprocessing queues?
         # Getting an NotImplementedException on OSX when using them though
         # and trying to call qsize()... Oh well, its working so far...
