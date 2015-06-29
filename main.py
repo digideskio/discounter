@@ -22,8 +22,8 @@ __maintainer__ = __author__
 __email__ = "francis.x.fitzpatrick@gmail.com"
 __status__ = "Prototype"
 
-def sigint_signal_handler(signal, frame):
-    sys.exit(0)
+#def sigint_signal_handler(signal, frame):
+#    sys.exit(0)
     
 class ErrorParser(argparse.ArgumentParser):
     def error(self, message):
@@ -57,7 +57,7 @@ parser.add_argument("--authkey", default="!QAZxsw2#EDCvfr4%TGBnhy6&UJM",
                     "and workers use to communicate")
 
 args = parser.parse_args()
-signal.signal(signal.SIGINT, sigint_signal_handler)
+#signal.signal(signal.SIGINT, sigint_signal_handler)
 
 if (args.verbose):
     logging.basicConfig(level=logging.DEBUG)
