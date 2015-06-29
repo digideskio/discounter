@@ -6,6 +6,7 @@ import multiprocessing
 from collections import Counter
 from mp_handler import MP_Handler
 
+
 class MP_Handler_Tests(unittest.TestCase):
     @classmethod
     def setUpClass(self):
@@ -19,15 +20,15 @@ class MP_Handler_Tests(unittest.TestCase):
                                                         "testkey")
 
     def test_word_count_with_three_words(self):
-        expected = Counter(['how','you','are'])
+        expected = Counter(['how', 'you', 'are'])
         filename = "test_artifacts/test_map_three_words.txt"
         result = self.handler.word_count(open(filename).read(),
                                          self.regex)
 
         self.assertEquals(expected, result)
-        
+
     def test_word_count_with_three_words_with_punctuation(self):
-        expected = Counter(['how','you','are'])
+        expected = Counter(['how', 'you', 'are'])
         filename = "test_artifacts/test_map_three_words_with_punctuation.txt"
         result = self.handler.word_count(open(filename).read(),
                                          self.regex)
@@ -72,7 +73,7 @@ class MP_Handler_Tests(unittest.TestCase):
     def test_counter_worker_three_words_expected_results_correct(self):
         job_queue = Queue.Queue()
         result_queue = Queue.Queue()
-        expected = Counter(['how','you','are'])
+        expected = Counter(['how', 'you', 'are'])
 
         file1 = "test_artifacts/test_map_three_words.txt"
 
@@ -105,7 +106,7 @@ class MP_Handler_Tests(unittest.TestCase):
         self.handler.mp_counter(job_queue, result_queue, nprocs)
 
         self.assertEquals(result_queue.qsize(), 1)
-        
+
     def test_mp_counter_three_files_eight_processes(self):
         job_queue = self.manager.get_job_queue()
         result_queue = self.manager.get_result_queue()
@@ -125,6 +126,6 @@ class MP_Handler_Tests(unittest.TestCase):
     # TODO: Develop a test to make sure processes are pulling from
     # the job queues correctly so that all jobs are shared accross
     # all of the available processes
-        
+
 if __name__ == '__main__':
     unittest.main()
