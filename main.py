@@ -4,7 +4,7 @@
 Application that returns the most commonly used words in text files
 
 Distributed, multiprocess application that returns a list of most commonly
-used words in a text file, or the total accross multiple files.
+used words in a text file, or the total across multiple files.
 """
 
 import sys
