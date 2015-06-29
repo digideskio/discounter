@@ -18,7 +18,8 @@ __maintainer__ = __author__
 __email__ = "francis.x.fitzpatrick@gmail.com"
 __status__ = "Prototype"
 
-class WordCounter():
+
+gclass WordCounter():
     def __init__(self):
         self.mp = mp_handler.MP_Handler()
 
@@ -44,10 +45,11 @@ class WordCounter():
         shared_job_queue = self.server_manager.get_job_queue()
         shared_result_queue = self.server_manager.get_result_queue()
         while shared_result_queue.qsize() != total_jobs:
-            pass            
+            pass
 
         logging.debug("Items in job queue: %d" % shared_job_queue.qsize())
-        logging.debug("Items in result queue: %d" % shared_result_queue.qsize())
+        logging.debug("Items in result queue: %d" %
+                      shared_result_queue.qsize())
 
         self.print_results(self.sum_results(shared_result_queue)
                            .most_common(kwargs["amt_of_words"]))
@@ -73,7 +75,7 @@ class WordCounter():
         """
         for i in pop_words:
             print "%s %d" % (i[0], i[1])
-    
+
     def setup_server(self, ip, port, authkey, files, regex):
         """
         Sets up the server, loads it with jobs, and returns how many
@@ -81,7 +83,7 @@ class WordCounter():
         """
         self.server_manager = self.mp.make_server_manager(ip, port, authkey)
         shared_job_queue = self.server_manager.get_job_queue()
-        
+
         # TODO: Chunk this up, instead of whole file
         total_jobs = 0
         for f in files:
@@ -89,7 +91,7 @@ class WordCounter():
             total_jobs = total_jobs + 1
 
             # Chunking into each line makes sum_results REALLY slow
-            #for line in f:
+            # for line in f:
             #    shared_job_queue.put([line, regex])
             #    total_jobs = total_jobs + 1
 
@@ -104,6 +106,6 @@ class WordCounter():
         self.client_manager = self.mp.make_client_manager(ip,
                                                           port,
                                                           authkey)
-        self.mp.mp_counter(self.client_manager.get_job_queue(), 
+        self.mp.mp_counter(self.client_manager.get_job_queue(),
                            self.client_manager.get_result_queue(),
-                           nprocs)        
+                           nprocs)

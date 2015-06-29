@@ -20,13 +20,14 @@ __maintainer__ = __author__
 __email__ = "francis.x.fitzpatrick@gmail.com"
 __status__ = "Prototype"
 
+
 class MP_Handler():
     def make_server_manager(self, ipaddr, port, authkey):
         """
         Creates a server manager that will manage all of the jobs in
         the job_queue that clients will pull from.
         """
-        
+
         # TODO: Probably need to make these multiprocessing queues?
         # Getting an NotImplementedException on OSX when using them though
         # and trying to call qsize()... Oh well, its working so far...
@@ -57,10 +58,11 @@ class MP_Handler():
             try:
                 job = job_queue.get_nowait()
                 logging.debug("%s: I have a job!!!" % process)
-                
+
                 results = self.word_count(job[0], job[1])
                 result_queue.put(results)
-                logging.debug("%s: Added results to the result_queue" % process)
+                logging.debug("%s: Added results to the "
+                              "result_queue" % process)
 
             except Queue.Empty:
                 logging.debug("%s: No work! Returning.", process)
@@ -88,7 +90,7 @@ class MP_Handler():
         ServerQueueManager.register('get_job_queue')
         ServerQueueManager.register('get_result_queue')
 
-        manager = ServerQueueManager(address=(ip,port), authkey=authkey)
+        manager = ServerQueueManager(address=(ip, port), authkey=authkey)
         manager.connect()
 
         logging.debug("Client connected to %s:%s" % (ip, port))
