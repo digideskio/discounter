@@ -19,7 +19,7 @@ __email__ = "francis.x.fitzpatrick@gmail.com"
 __status__ = "Prototype"
 
 
-gclass WordCounter():
+class WordCounter():
     def __init__(self):
         self.mp = mp_handler.MP_Handler()
 
