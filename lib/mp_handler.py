@@ -7,11 +7,13 @@ Multiprocessing handler used for the word counter application
 import logging
 import time
 import re
-import Queue
 import multiprocessing
 import sys
+from functools import partial
 from multiprocessing.managers import SyncManager
 from collections import Counter
+from Queue import Queue as RealQueue
+from Queue import Empty
 
 __author__ = "Fran Fitzpatrick"
 __copyright__ = "Copyright (c) 2015, %s" % __author__
@@ -21,6 +23,23 @@ __maintainer__ = __author__
 __email__ = "francis.x.fitzpatrick@gmail.com"
 __status__ = "Prototype"
 
+
+class Queue(RealQueue):
+    """ A picklable queue """
+    def __getstate__(self):
+        return (self.maxsize, self.queue, self.unfinished_tasks)
+
+    def __setstate__(self, state):
+        Queue.__init__(self)
+        self.maxsize = state[0]
+        self.queue = state[1]
+        self.unfinished_tasks = state[2]
+
+class JobQueueManager(SyncManager):
+    pass
+
+def get_queue(queue):
+    return queue
 
 class MP_Handler():
     def make_server_manager(self, ipaddr, port, authkey):
@@ -32,15 +51,13 @@ class MP_Handler():
         # TODO: Probably need to make these multiprocessing queues?
         # Getting an NotImplementedException on OSX when using them though
         # and trying to call qsize()... Oh well, its working so far...
-        job_queue = Queue.Queue()
-        result_queue = Queue.Queue()
+        job_queue = Queue()
+        result_queue = Queue()
 
-        class JobQueueManager(SyncManager):
-            pass
-
-        JobQueueManager.register('get_job_queue', callable=lambda: job_queue)
+        JobQueueManager.register('get_job_queue', callable=partial(get_queue, 
+                                                                   job_queue))
         JobQueueManager.register('get_result_queue',
-                                 callable=lambda: result_queue)
+                                 callable=partial(get_queue, result_queue))
 
         manager = JobQueueManager(address=(ipaddr, port), authkey=authkey)
         manager.start()
@@ -65,7 +82,7 @@ class MP_Handler():
                 logging.debug("%s: Added results to the "
                               "result_queue" % process)
 
-            except Queue.Empty:
+            except Empty:
                 logging.debug("%s: No work! Returning.", process)
                 return
 
