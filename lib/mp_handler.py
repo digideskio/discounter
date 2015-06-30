@@ -9,6 +9,7 @@ import time
 import re
 import Queue
 import multiprocessing
+import sys
 from multiprocessing.managers import SyncManager
 from collections import Counter
 
@@ -91,7 +92,12 @@ class MP_Handler():
         ServerQueueManager.register('get_result_queue')
 
         manager = ServerQueueManager(address=(ip, port), authkey=authkey)
-        manager.connect()
+
+        try:
+            manager.connect()
+        except Exception,e:
+            logging.error("%s" % e)
+            sys.exit(1)
 
         logging.debug("Client connected to %s:%s" % (ip, port))
         return manager
