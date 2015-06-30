@@ -67,7 +67,8 @@ elif (args.worker == True and args.file != None):
                   "at the same time.")
     sys.exit(1)
 
-wc = lib.wordcounter.WordCounter()
-wc.count(args.file, amt_of_words=args.count, regex=args.regex,
-         nprocs=args.nprocs, ipaddr=args.ipaddr, port=args.port,
-         authkey=args.authkey, worker=args.worker)
+if __name__ == "__main__":
+  wc = lib.wordcounter.WordCounter()
+  wc.count(args.file, amt_of_words=args.count, regex=args.regex,
+           nprocs=args.nprocs, ipaddr=args.ipaddr, port=args.port,
+           authkey=args.authkey, worker=args.worker)
