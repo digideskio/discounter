@@ -35,11 +35,14 @@ class Queue(RealQueue):
         self.queue = state[1]
         self.unfinished_tasks = state[2]
 
+
 class JobQueueManager(SyncManager):
     pass
 
+
 def get_queue(queue):
     return queue
+
 
 class MP_Handler():
     def make_server_manager(self, ipaddr, port, authkey):
@@ -54,8 +57,8 @@ class MP_Handler():
         job_queue = Queue()
         result_queue = Queue()
 
-        JobQueueManager.register('get_job_queue', callable=partial(get_queue, 
-                                                                   job_queue))
+        JobQueueManager.register('get_job_queue',
+                                 callable=partial(get_queue, job_queue))
         JobQueueManager.register('get_result_queue',
                                  callable=partial(get_queue, result_queue))
 
@@ -112,7 +115,7 @@ class MP_Handler():
 
         try:
             manager.connect()
-        except Exception,e:
+        except Exception, e:
             logging.error("%s" % e)
             sys.exit(1)
 
